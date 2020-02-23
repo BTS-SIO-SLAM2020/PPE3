@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Liste Candidatures{% endblock %}
+{% block monTitre %}Liste Candidatures{% endblock %}
+{% block body %}
+<table class="table">
+    <tr class="table-primary">
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>date de naissance</td>
+        <td>Formation souhaitée</td>
+        <td>date d'inscription</td>
+        <td> </td>
+    </tr>
+    {% for candidat in candidatures %}
+        <tr>
+        <td>{{candidat.nom}}</td>
+        <td>{{candidat.prenom}}</td>
+        <td>{{candidat.dateNaissance|date('d/m/Y')}}</td>
+        <td>{{candidat.formationPropose.diplome}} {{candidat.formationPropose.specialite}}</td>
+        <td>{{candidat.createdAt|date('d/m/Y')}}</td>
+        <td><a class="btn btn-secondary" href=" {{path('candidat',{'id': candidat.id})}} ">Voir</a></td>
+    </tr>
+    {% endfor %}
+
+
+
+</table>
+
+{% endblock %}
