@@ -10947,3 +10947,8 @@
    color: #000;
  }
  
+ .perso_img{
+  width: 150px;
+  height: 120px;
+  object-fit: cover;
+}
