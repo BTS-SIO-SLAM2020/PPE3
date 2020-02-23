@@ -86,6 +86,11 @@ class Candidature
      */
     private $message;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\FormationPropose", inversedBy="candidatures")
+     */
+    private $formationPropose;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -255,6 +260,18 @@ class Candidature
     public function setMessage(?string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getFormationPropose(): ?FormationPropose
+    {
+        return $this->formationPropose;
+    }
+
+    public function setFormationPropose(?FormationPropose $formationPropose): self
+    {
+        $this->formationPropose = $formationPropose;
 
         return $this;
     }
