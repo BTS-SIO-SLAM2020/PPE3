@@ -4,6 +4,20 @@
 {% block title %}Liste Candidatures{% endblock %}
 {% block monTitre %}Liste Candidatures{% endblock %}
 {% block body %}
+{{form_start(form)}}
+<div class="row no-gutters align-items-center text-center">
+    <div class="col-12 col-md-3">
+        {{form_row(form.minInscription)}}
+    </div>
+    <div class="col-12 col-md-3">
+        {{form_row(form.maxInscription)}}
+    </div>
+    <div class="col-12 col-md-3">
+        <input type="submit" value="rechercher" class="btn btn-info">
+    </div>   
+</div>
+{{form_end(form)}}
+
 <table class="table">
     <tr class="table-primary">
         <td>Nom</td>

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use Doctrine\ORM\Query;
 use App\Entity\Candidature;
+use App\Entity\RechercheCandidat;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -20,9 +21,16 @@ class CandidatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidature::class);
     }
 
-    public function findAllWithPagination(): Query{
-        return $this->createQueryBuilder('v')
-                    ->getQuery();
+    public function findAllWithPagination(RechercheCandidat $rechercheCandidat): Query{
+        $req=$this->createQueryBuilder('v');
+        if($rechercheCandidat->getMinInscription()){
+            $req=$req->andWhere('v.createdAt >:min')->setParameter(':min', $rechercheCandidat->getMinInscription());
+        }
+        return $req->getQuery();
+        if($rechercheCandidat->getMaxInscription()){
+            $req=$req->andWhere('v.createdAt <:max')->setParameter(':max', $rechercheCandidat->getMaxInscription());
+        }
+        return $req->getQuery();
     }
 
     // /**
