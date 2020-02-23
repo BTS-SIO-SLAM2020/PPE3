@@ -1,23 +1,65 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Liste Candidatures{% endblock %}
-{% block monTitre %}Liste Candidatures{% endblock %}
+{% block title %}Candidat{% endblock %}
+
+    
+
+{% block monTitre %}Candidat{% endblock %}
 {% block body %}
+<div class="row">
+<div class="col-12 col-lg-6 p-1">
+
+
 <table class="table">
     <tr >
-        <td>Nom :</td><td>{{candidat.nom}}</td>
+        <td><strong>Nom :</strong></td><td>{{candidat.nom}}</td>
     </tr>
     <tr >
-        <td>Prénom :</td><td>{{candidat.prenom}}</td>
+        <td><strong>Prénom :</strong></td><td>{{candidat.prenom}}</td>
     </tr>
     <tr >
-        <td>Prénom :</td><td>{{candidat.prenom}}</td>
+        <td><strong>Adresse :</strong></td><td>{{candidat.adresse}}</td>
     </tr>
-    
+    <tr >
+        <td><strong>Ville :</strong></td><td>{{candidat.ville}}</td>
+    </tr>
+    <tr >
+        <td><strong>Code postal :</strong></td><td>{{candidat.codePostal}}</td>
+    </tr>
+    <tr >
+        <td><strong>Code postal :</strong></td><td>{{candidat.codePostal}}</td>
+    </tr>
+    <tr >
+        <td><strong>Pays :</strong></td><td>{{candidat.pays}}</td>
+    </tr>
+    <tr >
+        <td><strong>Numéro de téléphone :</strong></td><td>{{candidat.telephone}}</td>
+    </tr>
+    <tr >
+        <td><strong>Date de naissance :</strong></td><td>{{candidat.dateNaissance|date('d/m/Y')}}</td>
+    </tr>
+    <tr >
+        <td><strong>Niveau d'étude :</strong></td><td>{{candidat.niveauEtude}}</td>
+    </tr>
+    <tr >
+        <td><strong>Statut professionnel :</strong></td><td>{{candidat.statutProfessionnel}}</td>
+    </tr>
+    <tr >
+        <td><strong>Formation souhaitée :</strong> <td>{{candidat.formationPropose.diplome}} {{candidat.formationPropose.specialite}}</td>
+    </tr>
+
+    <tr >
+        <td><strong>Message :</strong> <td>{{candidat.message}}</td>
+    </tr>
+    <tr >
+        <td><strong>Date d'inscription :</strong> <td>{{candidat.createdAt|date('d/m/Y')}}</td>
+    </tr>
 
 
 
 </table>
-
+</div>
+</div>
 {% endblock %}
+

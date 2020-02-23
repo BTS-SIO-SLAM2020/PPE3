@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Query;
 use App\Entity\Candidature;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Candidature|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,11 @@ class CandidatureRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Candidature::class);
+    }
+
+    public function findAllWithPagination(): Query{
+        return $this->createQueryBuilder('v')
+                    ->getQuery();
     }
 
     // /**
