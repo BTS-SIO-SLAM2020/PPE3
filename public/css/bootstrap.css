@@ -2811,7 +2811,7 @@
  
  .btn-secondary {
    color: #fff;
-   background-color: #95a5a6;
+   background-color: #191d3d;
    border-color: #95a5a6;
  }
  
@@ -7106,7 +7106,7 @@
  }
  
  .bg-primary {
-   background-color: #2C3E50 !important;
+   background-color: #191d3d !important;
  }
  
  a.bg-primary:hover, a.bg-primary:focus,
@@ -10777,7 +10777,7 @@
  .table-primary,
  .table-primary > th,
  .table-primary > td {
-   background-color: #2C3E50;
+   background-color: #191d3d;
  }
  
  .table-secondary,
