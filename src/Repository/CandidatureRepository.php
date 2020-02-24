@@ -8,6 +8,7 @@ use App\Entity\RechercheCandidat;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
+
 /**
  * @method Candidature|null find($id, $lockMode = null, $lockVersion = null)
  * @method Candidature|null findOneBy(array $criteria, array $orderBy = null)
@@ -24,11 +25,11 @@ class CandidatureRepository extends ServiceEntityRepository
     public function findAllWithPagination(RechercheCandidat $rechercheCandidat): Query{
         $req=$this->createQueryBuilder('v');
         if($rechercheCandidat->getMinInscription()){
-            $req=$req->andWhere('v.createdAt >:min')->setParameter(':min', $rechercheCandidat->getMinInscription());
+            $req=$req->andWhere('v.createdAt >=:min')->setParameter(':min', $rechercheCandidat->getMinInscription());
         }
         return $req->getQuery();
         if($rechercheCandidat->getMaxInscription()){
-            $req=$req->andWhere('v.createdAt <:max')->setParameter(':max', $rechercheCandidat->getMaxInscription());
+            $req=$req->andWhere('v.createdAt <=:max')->setParameter(':max', $rechercheCandidat->getMaxInscription());
         }
         return $req->getQuery();
     }

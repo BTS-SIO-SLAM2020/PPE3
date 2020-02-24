@@ -29,7 +29,8 @@ class CandidatureController extends AbstractController
             6/*limit per page*/);
         return $this->render('candidature/listeCandidature.html.twig', [
             'candidatures' => $candidatures,
-            "form"=>$form->createView()
+            "form"=>$form->createView(),
+            "admin"=>false
         ]);
     }
 

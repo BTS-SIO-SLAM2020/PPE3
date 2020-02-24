@@ -25,7 +25,9 @@
         <td>date de naissance</td>
         <td>Formation souhaitée</td>
         <td>date d'inscription</td>
-        <td> </td>
+        <td>Action </td>
+        
+        
     </tr>
     {% for candidat in candidatures %}
         <tr>
@@ -34,7 +36,25 @@
         <td>{{candidat.dateNaissance|date('d/m/Y')}}</td>
         <td>{{candidat.formationPropose.diplome}} {{candidat.formationPropose.specialite}}</td>
         <td>{{candidat.createdAt|date('d/m/Y')}}</td>
-        <td><a class="btn btn-secondary" href=" {{path('candidat',{'id': candidat.id})}} ">Voir</a></td>
+        {% if admin %}
+        <td>
+        <div class="row no-gutters">
+            <a class="col btn btn-secondary" href=" {{path('modificationInscription',{'id': candidat.id})}} ">Modifier</a>
+            <form method="post" class="col" action="{{path('supCandidat',{'id': candidat.id})}}" onsubmit="return confirm('Voulez-vous vraiment supprimer?')">
+                <input type="hidden" name="_method" value="SUP">
+                <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ candidat.id)}}">
+                <input type="submit" class="btn btn-danger w-100" value="Supprimer">
+            </form>
+        </div>
+        </td>
+        {% else %}
+        <td>
+            <div class="row no-gutters">
+                <a class="col btn btn-secondary" href=" {{path('candidat',{'id': candidat.id})}} ">Voir</a>
+            </div>
+         </td>   
+      
+        {% endif %}
     </tr>
     {% endfor %}
 
