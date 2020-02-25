@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Nouvel administrateur{% endblock %}
+
+    
+
+{% block monTitre %}Administrateur{% endblock %}
+{% block body %}
+{{form_start(form)}}
+{{form_widget(form)}}
+    <a class="btn btn-primary" href="{{path('newAdministreur')}}">Retour</a>
+    <input type="submit" value="Valider" class="btn btn-success">
+{{form_end(form)}}
+{% endblock %}
