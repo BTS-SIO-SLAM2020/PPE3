@@ -38,7 +38,7 @@ class AdminController extends AbstractController
 
      /**
      *  @Route("/", name="inscription")
-     * @Route("/admin/{id}", name="modificationInscription", methods="GET|POST")
+     * @Route("/admin/candidat/{id}", name="modificationInscription", methods="GET|POST")
      */
     public function modification(Candidature $candidat=null, Request $request, EntityManagerInterface $om)
     {   

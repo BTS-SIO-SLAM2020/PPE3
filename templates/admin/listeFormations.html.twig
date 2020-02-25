@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Liste formation{% endblock %}
+{% block monTitre %}Liste formations proposées{% endblock %}
+{% block body %}
+
+
+<table class="table">
+    <tr class="table-primary">
+        <td>Diplome</td>
+        <td>Spécialité</td>
+        <td>Action </td>
+        
+        
+    </tr>
+    {% for formation in formations %}
+        <tr>
+        <td>{{formation.diplome}}</td>
+        <td>{{formation.specialite}}</td>
+        
+      
+        <td>
+        <div class="row no-gutters">
+            <a class="col btn btn-secondary" href=" {{path('modifFormation',{'id': formation.id})}} ">Modifier</a>
+            <form method="post" class="col" action="{{path('supFormation',{'id': formation.id})}}" onsubmit="return confirm('Voulez-vous vraiment supprimer?')">
+                <input type="hidden" name="_method" value="SUP">
+                <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ formation.id)}}">
+                <input type="submit" class="btn btn-danger w-100" value="Supprimer">
+            </form>
+        </div>
+        </td>
+       
+    </tr>
+    {% endfor %}
+
+
+
+</table>
+<a href="{{path('ajoutFormation')}}" class="btn btn-success">Ajouter</a>
+
+
+{% endblock %}
