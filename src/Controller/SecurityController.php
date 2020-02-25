@@ -9,11 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/administreur", name="newAdministreur")
+     * @Route("/admin/administreur", name="newAdministreur")
      */
     public function index(Request $request, EntityManagerInterface $om,UserPasswordEncoderInterface $encoder)
     {
@@ -36,9 +37,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login()
+    public function login(AuthenticationUtils $util)
     {
-         return $this->render('administrateur/login.html.twig');
+        return $this->render('administrateur/login.html.twig',["lastUsername"=>$util->getLastUsername(),
+        "error"=>$util->getLastAuthenticationError()]);
     }
 
      /**

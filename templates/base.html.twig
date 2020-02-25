@@ -22,39 +22,33 @@
                   <a class="nav-link" href="{{path('inscription')}}">Inscription</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Candidatures
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{path('listeCandidatures')}}">Candidatures</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{path('admin')}}">Administration</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Formations
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{path('adminFormation')}}">Formations</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{path('adminFormation')}}">Administration</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Administrateur
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if not app.user %}
                     <a class="dropdown-item" href="{{path('login')}}">Login</a>
+                    {% else %}                      
                     <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
+                    {% endif %}
+                    <div class="dropdown-divider"></div>
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                    <a class="dropdown-item" href="{{path('listeCandidatures')}}">Candidatures</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a class="dropdown-item" href="{{path('admin')}}">Administration candidatures</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{path('adminFormation')}}">Administration formation</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{path('newAdministreur')}}">Inscription nouvel administrateur</a>
-                    </div>
+                    <div class="dropdown-divider"></div>
+                    {% endif %}
+                  </div>
+                  
                 </li>
-                
+              
               </ul>
-            
             </div>
           </nav>
 

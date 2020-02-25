@@ -7,10 +7,15 @@
 
 {% block monTitre %}Login{% endblock %}
 {% block body %}
+{% if error %}
+<div class="alert alert-danger">
+    Le login ou le mot de passe n'est pas valide
+</div>
+{% endif %}
 <form action="{{path('login')}}" method="post">
 <div class="form-group">
     <label>Login : </label>
-    <input type="text" required name="_username" class="form-control">
+    <input type="text" required name="_username" class="form-control" value="{{lastUsername}}">
 </div>
 <div class="form-group">
     <label>Mot de passe : </label>
