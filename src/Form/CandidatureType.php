@@ -27,7 +27,6 @@ class CandidatureType extends AbstractType
             ->add('niveauEtude')
             ->add('statutProfessionnel')
             ->add('message')
-            ->add('createdAt')
             ->add('formationPropose', EntityType::class,['class'=>FormationPropose::class,'choice_label'=>('id')])
         ;
     }
