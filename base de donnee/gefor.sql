@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `gefor`
 --
+CREATE DATABASE if not exists `gefor`;
+create user ppe3@localhost IDENTIFIED BY 'ppe3';
+grant all on gefor.* to ppe@localhost;
+USE gefor;
 
 -- --------------------------------------------------------
 
