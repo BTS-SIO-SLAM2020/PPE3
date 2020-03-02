@@ -50,6 +50,9 @@ class AdminController extends AbstractController
         $form=$this->createForm(CandidatureType::class, $candidat);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            if(!$candidat) {
+            $candidat->setCreatedAt( new \DateTime("now"));
+            }
             $om->persist($candidat);
             $om->flush();
             $this->addFlash('success',"Inscription enregistrée");
