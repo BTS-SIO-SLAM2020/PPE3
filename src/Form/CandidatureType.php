@@ -27,8 +27,11 @@ class CandidatureType extends AbstractType
             ->add('niveauEtude')
             ->add('statutProfessionnel')
             ->add('message')
-            ->add('formationPropose', EntityType::class,['class'=>FormationPropose::class,'choice_label'=>('id')])
-        ;
+            ->add('formationPropose', EntityType::class,['class'=>FormationPropose::class,
+            'choice_label'=>function($formationPropose) {
+                /** @var Category $category */
+                return $formationPropose->getDiplome() . ' ' . $formationPropose->getSpecialite();
+            }, 'choice_value'=>('id') ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
